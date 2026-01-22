@@ -1,11 +1,11 @@
-# 🌐 Pxp3 - Website
+# 🌐 Pixel Pro 3 - Website
 
 <details>
 <summary>🇺🇸 English</summary>
 
 ---
 
-This is the repository of **Pxp3's** commercial website, developed using **Laravel 12, Vite, JavaScript, and Bootstrap 5.2.1**.
+This is the repository of **Pixel Pro 3's** commercial website, developed using **Laravel 12, Vite, JavaScript, and Bootstrap 5.2.1**.
 
 ## 🚀 Technologies Used
 
@@ -47,8 +47,8 @@ This is the repository of **Pxp3's** commercial website, developed using **Larav
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/pixelpro3.git
-   cd pixelpro3
+   git clone https://github.com/vusnic/Pixel-Pro3.git
+   cd Pixel-Pro3
    ```
 
 2. Install PHP dependencies via Composer:
