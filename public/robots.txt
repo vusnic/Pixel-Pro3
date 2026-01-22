@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /login
+Disallow: /register
+Disallow: /password/
+Disallow: /tmp/
+Disallow: *.php$
+
+# Sitemap
+Sitemap: https://www.pxp3.com/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 10

@@ -1,0 +1,442 @@
+@import 'tailwindcss';
+
+@import './theme.css';
+@import './fonts.css';
+@import './aos.css';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source "../**/*.blade.php";
+@source "../**/*.js";
+@source "../**/*.vue";
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* Estilos para animação do navbar */
+.navbar {
+    transition: all 0.3s ease-in-out;
+}
+
+a:hover {
+    color: var(--bs-tertiary-color);
+}
+
+a {
+    --bs-text-opacity: 1;
+    color:white;
+}
+
+[data-bs-theme="dark"] .navbar-scrolled {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+[data-bs-theme="light"] .navbar-scrolled {
+    background-color: rgba(248, 249, 250, 0.98) !important;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+/* Estilos para o posicionamento correto das imagens about */
+.position-relative img.position-absolute {
+    transition: all 0.3s ease-out;
+    will-change: transform;
+    z-index: 2;
+}
+
+.position-relative img:first-child {
+    z-index: 1;
+}
+
+@media (max-width: 992px) {
+    .position-relative img.position-absolute {
+        position: relative !important;
+        left: 0 !important;
+        top: 0 !important;
+        margin-top: 20px;
+    }
+}
+
+/* Estilos para o formulário hero */
+.form-control,
+.form-select {
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+}
+
+/* Estilo para textos secundários */
+.text-theme-secondary:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(.h5) {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Ajustes para o select de países */
+.country-select {
+    border-radius: 6px !important;
+    margin-right: 8px;
+}
+
+/* Remover o estilo padrão do input-group que cola os elementos */
+.input-group {
+    flex-wrap: nowrap;
+}
+
+.input-group>* {
+    border-radius: 6px !important;
+    position: relative;
+}
+
+button.bg-tertiary {
+    color: white;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button.bg-tertiary:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para os logotipos de parceiros */
+.partner-logo {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.partner-logo:hover {
+    opacity: 1;
+}
+
+/* Partners Section Styling */
+.partners-slider {
+    padding: 1rem 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    border-radius: 0;
+}
+
+.partners-slider::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+}
+
+.partner-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    margin: 0;
+    padding: 0 5px;
+}
+
+.partner-logo img {
+    height: 60px;
+    /* Altura máxima reduzida e uniforme */
+    width: auto;
+    padding: 5px;
+    filter: grayscale(30%);
+    opacity: 1;
+    transition: all 0.3s ease;
+    object-fit: contain;
+    /* Mantém a proporção da imagem */
+}
+
+@media (max-width: 992px) {
+    .partner-logo img {
+        height: 40px;
+        padding: 0;
+    }
+}
+
+.partner-logo:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+@media (min-width: 992px) {
+    .partner-logo {
+        height: 60px;
+        /* Altura fixa para desktop */
+        padding: 0 10px;
+    }
+
+    .partner-logo img {
+        max-height: 60px;
+        /* Altura máxima para desktop */
+    }
+}
+
+/* Estilos adicionais podem ser adicionados aqui */
+
+.service-card-img {
+    height: 200px;
+    width: 100%;
+}
+
+.card-testimonial {
+    border-radius: 136.533px;
+}
+
+/* Gradiente para o layout de autenticação */
+.gradient {
+    background: linear-gradient(90deg, #5612D8 0%, #B31ABB 50%, #FF2525 100%);
+}
+
+/* Portfolio Slider Styles */
+.portfolio-slider {
+    margin-bottom: 3rem;
+}
+
+.portfolio-img-container {
+    position: relative;
+    overflow: hidden;
+    height: 240px;
+}
+
+.portfolio-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card-hover:hover .portfolio-img-container img {
+    transform: scale(1.05);
+}
+
+.portfolio-category {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2;
+}
+
+.no-bottom-radius {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+/* Swiper Custom Styles */
+.swiper-container {
+    overflow: hidden;
+    padding: 1rem 0;
+}
+
+.swiper-slide {
+    height: auto;
+    transition: transform 0.3s;
+    padding: 0.5rem;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: var(--bs-tertiary-color);
+    width: 3rem;
+    height: 3rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background-color: var(--bs-tertiary-bg);
+    color: var(--bs-theme-primary);
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 1.5rem;
+}
+
+.swiper-pagination-bullet {
+    background-color: var(--bs-tertiary-color);
+    opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: var(--bs-tertiary-bg);
+    opacity: 1;
+}
+
+/* Estilos para o particles.js */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    top: 0;
+    left: 0;
+    pointer-events: auto !important;
+}
+
+#particles-js canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    pointer-events: auto !important;
+    opacity: 0.8 !important;
+}
+
+/* Removendo completamente os pseudo-elementos */
+/* #particles-js:before, #particles-js:after {
+    content: none;
+    display: none;
+} */
+
+/* Add preload for custom fonts */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap; /* Impede FOUT (Flash of Unstyled Text) */
+    src: url('../assets/fonts/inter-v12-latin-300.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/inter-v12-latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('../assets/fonts/inter-v12-latin-500.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../assets/fonts/inter-v12-latin-700.woff2') format('woff2');
+}
+
+/* Definir variáveis CSS para cores e valores comuns */
+:root {
+    --theme-primary-color: #171717;
+    --theme-secondary-color: #f5f5f5;
+    --theme-tertiary-color: #e230c6;
+    --theme-text-primary: #f5f5f5;
+    --theme-text-secondary: #8b8b8b;
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --border-radius-sm: 0.25rem;
+    --border-radius-md: 0.5rem;
+    --border-radius-lg: 1rem;
+    --transition-standard: all 0.3s ease-in-out;
+}
+
+/* Layout Container */
+.container {
+    width: 100%;
+    padding-right: var(--spacing-md);
+    padding-left: var(--spacing-md);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/* Otimizações para dispositivos móveis */
+@media (max-width: 768px) {
+    h1, .h1 {
+        font-size: 2rem !important;
+    }
+    
+    h2, .h2 {
+        font-size: 1.75rem !important;
+    }
+    
+    .display-1, .display-2, .display-3, .display-4 {
+        font-size: 2.25rem !important;
+    }
+    
+    .display-huge {
+        font-size: 2.5rem !important;
+    }
+    
+    .container {
+        padding-right: var(--spacing-sm);
+        padding-left: var(--spacing-sm);
+    }
+}
+
+/* Otimizações para carregamento de imagens */
+.img-lazy {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.img-lazy.loaded {
+    opacity: 1;
+}
+
+/* Estilos para melhorar acessibilidade */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+:focus {
+    outline: 2px solid var(--theme-tertiary-color);
+    outline-offset: 2px;
+}
+
+/* Melhoria de animações - reduzir o movimento */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Admin sempre em tema escuro - Melhorias de contraste */
+/* O admin é forçado a sempre usar tema escuro via JavaScript no layout admin.blade.php */
+body.admin-area {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+}
+
+/* Garantir que textos no admin tenham contraste adequado */
+.admin-area .text-muted {
+    color: #adb5bd !important;
+}
+
+.admin-area .bg-dark {
+    background-color: #212529 !important;
+}
+
+.admin-area .border-dark {
+    border-color: #495057 !important;
+}

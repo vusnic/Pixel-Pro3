@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+If you need run php comands, aways use docker compose exec app bash before

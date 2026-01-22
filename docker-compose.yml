@@ -1,0 +1,80 @@
+services:
+    # image project
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+            - contracts_templates:/var/www/storage/app/contracts/templates
+            - contracts_generated:/var/www/storage/app/contracts/generated
+            - contracts_temp:/var/www/tmp
+        depends_on:
+            - redis
+        networks:
+            - laravel
+
+    # nginx
+    nginx:
+        image: nginx:alpine
+        restart: unless-stopped
+        ports:
+            - "8000:80"
+        volumes:
+            - ./:/var/www
+            - ./docker/nginx/:/etc/nginx/conf.d/
+            - contracts_templates:/var/www/storage/app/contracts/templates
+            - contracts_generated:/var/www/storage/app/contracts/generated
+        networks:
+            - laravel
+
+    # db mysql
+    db:
+        image: mysql:8.0
+        platform: linux/x86_64
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE:-dev}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
+            MYSQL_PASSWORD: ${DB_PASSWORD:-devpass}
+            MYSQL_USER: ${DB_USERNAME:-dev}
+        volumes:
+            - ./.docker/mysql/dbdata:/var/lib/mysql
+        ports:
+            - "3300:3306"
+        networks:
+            - laravel
+
+    # PHPMyAdmin
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        platform: linux/x86_64
+        restart: unless-stopped
+        ports:
+            - "8080:80"
+        environment:
+            PMA_HOST: db
+            PMA_PORT: 3306
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
+        networks:
+            - laravel
+
+    # redis
+    redis:
+        image: redis:latest
+        networks:
+            - laravel
+
+networks:
+    laravel:
+        driver: bridge
+
+volumes:
+    contracts_templates:
+        driver: local
+    contracts_generated:
+        driver: local
+    contracts_temp:
+        driver: local

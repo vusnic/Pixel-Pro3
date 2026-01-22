@@ -1,0 +1,846 @@
+{
+  "info": {
+    "_postman_id": "a5e12345-6789-4abc-def0-123456789abc",
+    "name": "Pxp3 API",
+    "description": "Documentação da API do Pxp3",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Autenticação",
+      "description": "Endpoints relacionados à autenticação e gerenciamento de usuários",
+      "item": [
+        {
+          "name": "Registro",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR",
+                "description": "Idioma da resposta (pt-BR, en, es)"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Nome do Usuário\",\n  \"email\": \"email@exemplo.com\",\n  \"password\": \"Senha@123\",\n  \"password_confirmation\": \"Senha@123\",\n  \"phone\": \"+5511999999999\",\n  \"role\": \"salesperson\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "register"]
+            },
+            "description": "Registra um novo usuário no sistema"
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"email@exemplo.com\",\n  \"password\": \"Senha@123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "login"]
+            },
+            "description": "Autentica um usuário e retorna tokens de acesso"
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/logout",
+              "host": ["{{base_url}}"],
+              "path": ["api", "logout"]
+            },
+            "description": "Faz logout do usuário autenticado"
+          }
+        },
+        {
+          "name": "Usuário Atual",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/user",
+              "host": ["{{base_url}}"],
+              "path": ["api", "user"]
+            },
+            "description": "Retorna os dados do usuário autenticado"
+          }
+        },
+        {
+          "name": "Atualizar Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refresh_token\": \"{{refresh_token}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/refresh-token",
+              "host": ["{{base_url}}"],
+              "path": ["api", "refresh-token"]
+            },
+            "description": "Atualiza o token de acesso usando o refresh token"
+          }
+        },
+        {
+          "name": "Esqueci a Senha",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"email@exemplo.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/forgot-password",
+              "host": ["{{base_url}}"],
+              "path": ["api", "forgot-password"]
+            },
+            "description": "Envia um link de recuperação de senha para o e-mail do usuário"
+          }
+        },
+        {
+          "name": "Redefinir Senha",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"email@exemplo.com\",\n  \"token\": \"token-de-recuperacao\",\n  \"password\": \"NovaSenha@123\",\n  \"password_confirmation\": \"NovaSenha@123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reset-password",
+              "host": ["{{base_url}}"],
+              "path": ["api", "reset-password"]
+            },
+            "description": "Redefine a senha do usuário usando o token recebido por e-mail"
+          }
+        },
+        {
+          "name": "Reenviar E-mail de Verificação",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/email/verification-notification",
+              "host": ["{{base_url}}"],
+              "path": ["api", "email", "verification-notification"]
+            },
+            "description": "Envia um novo e-mail de verificação para o usuário autenticado"
+          }
+        },
+        {
+          "name": "Verificar E-mail",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/email/verify/{id}/{hash}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "email", "verify", "{id}", "{hash}"]
+            },
+            "description": "Verifica o e-mail do usuário usando os parâmetros recebidos por e-mail"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Leads",
+      "description": "Endpoints para gerenciamento de leads",
+      "item": [
+        {
+          "name": "Criar Lead (Público)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Nome do Lead\",\n  \"email\": \"lead@exemplo.com\",\n  \"phone\": \"+5511999999999\",\n  \"company\": \"Empresa\",\n  \"message\": \"Mensagem de contato\",\n  \"service_id\": 1\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/leads",
+              "host": ["{{base_url}}"],
+              "path": ["api", "leads"]
+            },
+            "description": "Cria um novo lead (função pública, não requer autenticação)"
+          }
+        },
+        {
+          "name": "Listar Leads",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/leads",
+              "host": ["{{base_url}}"],
+              "path": ["api", "leads"]
+            },
+            "description": "Lista todos os leads (requer autenticação)"
+          }
+        },
+        {
+          "name": "Detalhes do Lead",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/leads/{id}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "leads", "{id}"]
+            },
+            "description": "Obtém os detalhes de um lead específico"
+          }
+        },
+        {
+          "name": "Atualizar Lead",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Nome Atualizado\",\n  \"email\": \"lead@exemplo.com\",\n  \"phone\": \"+5511999999999\",\n  \"company\": \"Empresa Atualizada\",\n  \"message\": \"Mensagem atualizada\",\n  \"status\": \"contacted\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/leads/{id}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "leads", "{id}"]
+            },
+            "description": "Atualiza os dados de um lead existente"
+          }
+        },
+        {
+          "name": "Excluir Lead",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/leads/{id}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "leads", "{id}"]
+            },
+            "description": "Remove um lead do sistema"
+          }
+        },
+        {
+          "name": "Estatísticas de Leads",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/leads-stats",
+              "host": ["{{base_url}}"],
+              "path": ["api", "leads-stats"]
+            },
+            "description": "Obtém estatísticas sobre leads"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Portfolio",
+      "description": "Endpoints para gerenciamento de portfólio",
+      "item": [
+        {
+          "name": "Listar Itens do Portfólio",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/portfolio",
+              "host": ["{{base_url}}"],
+              "path": ["api", "portfolio"]
+            },
+            "description": "Lista todos os itens do portfólio"
+          }
+        },
+        {
+          "name": "Listar Categorias",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/portfolio/categories",
+              "host": ["{{base_url}}"],
+              "path": ["api", "portfolio", "categories"]
+            },
+            "description": "Lista todas as categorias de portfólio"
+          }
+        },
+        {
+          "name": "Detalhes do Item de Portfólio",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/portfolio/{id}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "portfolio", "{id}"]
+            },
+            "description": "Obtém os detalhes de um item específico do portfólio"
+          }
+        },
+        {
+          "name": "Criar Item de Portfólio",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Título do Projeto",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Descrição detalhada do projeto",
+                  "type": "text"
+                },
+                {
+                  "key": "client",
+                  "value": "Nome do Cliente",
+                  "type": "text"
+                },
+                {
+                  "key": "category",
+                  "value": "web-design",
+                  "type": "text"
+                },
+                {
+                  "key": "date",
+                  "value": "2023-09-15",
+                  "type": "text"
+                },
+                {
+                  "key": "url",
+                  "value": "https://exemplo.com/projeto",
+                  "type": "text"
+                },
+                {
+                  "key": "featured",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "images[]",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/portfolio",
+              "host": ["{{base_url}}"],
+              "path": ["api", "portfolio"]
+            },
+            "description": "Cria um novo item de portfólio"
+          }
+        },
+        {
+          "name": "Atualizar Item de Portfólio",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Título Atualizado",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Descrição atualizada",
+                  "type": "text"
+                },
+                {
+                  "key": "client",
+                  "value": "Cliente Atualizado",
+                  "type": "text"
+                },
+                {
+                  "key": "category",
+                  "value": "mobile-app",
+                  "type": "text"
+                },
+                {
+                  "key": "date",
+                  "value": "2023-10-20",
+                  "type": "text"
+                },
+                {
+                  "key": "url",
+                  "value": "https://exemplo.com/projeto-atualizado",
+                  "type": "text"
+                },
+                {
+                  "key": "featured",
+                  "value": "0",
+                  "type": "text"
+                },
+                {
+                  "key": "images[]",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "_method",
+                  "value": "PUT",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/portfolio/{id}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "portfolio", "{id}"]
+            },
+            "description": "Atualiza um item de portfólio existente"
+          }
+        },
+        {
+          "name": "Excluir Item de Portfólio",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/portfolio/{id}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "portfolio", "{id}"]
+            },
+            "description": "Remove um item de portfólio"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Serviços",
+      "description": "Endpoints para gerenciamento de serviços",
+      "item": [
+        {
+          "name": "Listar Serviços",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/services",
+              "host": ["{{base_url}}"],
+              "path": ["api", "services"]
+            },
+            "description": "Lista todos os serviços disponíveis"
+          }
+        },
+        {
+          "name": "Listar Serviços Destacados",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/services/featured",
+              "host": ["{{base_url}}"],
+              "path": ["api", "services", "featured"]
+            },
+            "description": "Lista os serviços marcados como destacados"
+          }
+        },
+        {
+          "name": "Detalhes do Serviço",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/services/{id}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "services", "{id}"]
+            },
+            "description": "Obtém os detalhes de um serviço específico"
+          }
+        },
+        {
+          "name": "Criar Serviço",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Título do Serviço",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Descrição detalhada do serviço",
+                  "type": "text"
+                },
+                {
+                  "key": "short_description",
+                  "value": "Descrição curta",
+                  "type": "text"
+                },
+                {
+                  "key": "icon",
+                  "value": "fa-code",
+                  "type": "text"
+                },
+                {
+                  "key": "price",
+                  "value": "1000.00",
+                  "type": "text"
+                },
+                {
+                  "key": "featured",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/services",
+              "host": ["{{base_url}}"],
+              "path": ["api", "services"]
+            },
+            "description": "Cria um novo serviço"
+          }
+        },
+        {
+          "name": "Atualizar Serviço",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Título Atualizado",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Descrição atualizada",
+                  "type": "text"
+                },
+                {
+                  "key": "short_description",
+                  "value": "Nova descrição curta",
+                  "type": "text"
+                },
+                {
+                  "key": "icon",
+                  "value": "fa-brush",
+                  "type": "text"
+                },
+                {
+                  "key": "price",
+                  "value": "1200.00",
+                  "type": "text"
+                },
+                {
+                  "key": "featured",
+                  "value": "0",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "_method",
+                  "value": "PUT",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/services/{id}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "services", "{id}"]
+            },
+            "description": "Atualiza um serviço existente"
+          }
+        },
+        {
+          "name": "Excluir Serviço",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "pt-BR"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/services/{id}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "services", "{id}"]
+            },
+            "description": "Remove um serviço"
+          }
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "access_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "refresh_token",
+      "value": "",
+      "type": "string"
+    }
+  ]
+} 

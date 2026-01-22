@@ -1,0 +1,62 @@
+# docker-compose para ambiente de produção
+services:
+  # image project
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    restart: always
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - redis
+    networks:
+      - laravel
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+
+  # nginx
+  nginx:
+    image: nginx:stable-alpine
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/prod:/etc/nginx/conf.d/
+      - ./docker/nginx/ssl:/etc/nginx/ssl/
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    networks:
+      - laravel
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+
+  # redis
+  redis:
+    image: redis:alpine
+    restart: always
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - redis-data:/data
+    networks:
+      - laravel
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 256M
+
+networks:
+  laravel:
+    driver: bridge
+
+volumes:
+  redis-data: 

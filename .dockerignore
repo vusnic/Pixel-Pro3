@@ -1,0 +1,9 @@
+.docker
+vendor
+node_modules
+.git
+storage/*.key
+bootstrap/cache/*
+.env
+.env.*
+*.log
