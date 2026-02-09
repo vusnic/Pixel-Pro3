@@ -27,20 +27,14 @@ use App\Http\Controllers\Web\BlogController;
 |
 */
 
-// Public routes
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/services', [ServiceController::class, 'index'])->name('services');
-Route::get('/services/{id}', [ServiceController::class, 'show'])->name('services.show');
-Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
-// Route::get('/testimonials', [HomeController::class, 'testimonials'])->name('testimonials');
-Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
-// Public
-Route::get('/blog', [BlogController::class, 'index'])->name('blog');
-Route::get('/post/{slug}', [BlogController::class, 'show'])->name('blog.show');
+// Public routes - React SPA
+Route::get('/', function () {
+    return view('react');
+})->name('home');
 
-
-// Rotas públicas para o portfólio
-Route::get('/portfolio/{id}', [PortfolioController::class, 'show'])->name('portfolio.show');
+// API routes for React SPA
+// These routes serve JSON data to the React frontend
+// Public data routes are already handled by /api endpoints
 
 // Authentication routes - for guests (not authenticated)
 Route::middleware('guest')->group(function () {
@@ -96,3 +90,8 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::get('contracts/{contract}/download', [ContractController::class, 'download'])->name('contracts.download');
     Route::delete('contracts/{contract}', [ContractController::class, 'destroy'])->name('contracts.destroy');
 });
+
+// Fallback para React Router (SPA) - deve ser a última rota
+Route::get('/{any}', function () {
+    return view('react');
+})->where('any', '.*');
