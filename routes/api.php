@@ -34,8 +34,8 @@ Route::get('/email/verified', function () {
     return response()->json(['message' => __('api.auth.email_verified')]);
 })->name('verification.verified');
 
-// Rota pública para criação de leads
-Route::post('/leads', [LeadController::class, 'store']);
+// Rota pública para criação de leads — throttle: 5 tentativas por IP por minuto
+Route::post('/leads', [LeadController::class, 'store'])->middleware('throttle:5,1');
 
 // Rotas protegidas para gerenciamento de leads
 Route::middleware('auth:sanctum')->group(function() {

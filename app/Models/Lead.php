@@ -23,6 +23,15 @@ class Lead extends Model
         'message',
         'source',
         'status',
+        'ip_address',
+        'user_agent',
+        'is_spam',
+        'spam_score',
+    ];
+
+    protected $casts = [
+        'is_spam'    => 'boolean',
+        'spam_score' => 'integer',
     ];
 
     /**
